@@ -1,0 +1,124 @@
+//game variables and constants
+let inputDir={x:0,y:0};
+const foodSound=new Audio("food.mp3");
+const gameOverSound=new Audio("gameover.mp3");
+const moveSound=new Audio("move.mp3");
+const musicSound=new Audio("music.mp3");
+let score=0;
+
+let speed=2;
+let lastPaintTime=0;        //initially
+let snakeArr=[
+    {x:10,y:10}     //object(head of snake/starting point)
+]
+food={x:13,y:14};        //not an array
+
+//game functions
+function main(ctime){
+    window.requestAnimationFrame(main);
+    //console.log(ctime)
+    if((ctime-lastPaintTime)/1000<1/speed){             //lastPaintTime takes the last time when the page rendered
+        return;         //divide by 1000 because it is in miliseconds
+    }
+    lastPaintTime=ctime;
+    gameEngine();
+}
+
+function collide(sarr){
+    return false;
+}
+
+function gameEngine(){
+    //part 1: updating snake array and food- giving it locations and all
+    if(collide(snakeArr)){
+        gameOverSound.play();
+        musicSound.pause();
+        inputDir={x:0,y:0};
+        alert("Game over! Press any key to start again");
+        snakeArr=[{x:10,y:10}];
+        musicSound.play();
+        score=0;
+    }
+
+    //if food is eaten then increment score and regenerate food
+    if(snakeArr[0].y===food.y && snakeArr[0].x===food.x){
+        foodSound.play();
+        snakeArr.unshift({x:snakeArr[0].x+inputDir.x, y:snakeArr[0].y+ inputDir.y}) //adds new segment in starting of array when the snake eats food
+        let a=1;
+        let b=20;
+        food={x:Math.round(a+(b-a)*Math.random())}  //generate food at random grid points
+    }
+
+    //moving the snake
+    for (let i = snakeArr.length-2; i <=0; i--) {
+        snakeArr[i+1]={...snakeArr[i]}; //snakeArr[i]'s new object is formed
+        
+    }
+    snakeArr[0].x+=inputDir.x;
+    snakeArr[0].y+=inputDir.y;
+
+    //part 2: display snake
+    board.innerHTML="";
+    snakeArr.forEach((e,index)=>{           //this will be for all objects
+        snakeElement=document.createElement("div");
+        snakeElement.style.gridRowStart=e.y;
+        snakeElement.style.gridColumnStart=e.x;
+        
+        if(index===0){
+            snakeElement.classList.add("head");
+        }
+        else{
+            snakeElement.classList.add("snakebody");
+        }
+
+        board.appendChild(snakeElement);
+    })
+
+    //part 3: display food
+    foodElement=document.createElement("div");
+    foodElement.style.gridRowStart=food.y;
+    foodElement.style.gridColumnStart=food.x;
+    foodElement.classList.add("food");
+    board.appendChild(foodElement);
+
+}
+
+
+
+
+
+// main function logic
+window.requestAnimationFrame(main);
+window.addEventListener("keydown",e=>{
+    inputDir={x:0,y:1}  //start game by moving head downwards
+    moveSound.play();
+
+    switch (e.key) {
+        case "ArrowUp":
+            console.log("ArrowUp");
+            inputDir.x=0;
+            inputDir.y=-1;
+            break;
+
+        case "ArrowDown":
+            console.log("ArrowDown");
+            inputDir.x=0;
+            inputDir.y=1;
+            break;
+
+        case "ArrowLeft":
+            console.log("ArrowLeft");
+            inputDir.x=-1;
+            inputDir.y=0;
+            break;
+
+        case "ArrowRight":
+            console.log("ArrowRight");
+            inputDir.x=1;
+            inputDir.y=0;
+            break;
+    
+        default:
+            break;
+    }
+})
