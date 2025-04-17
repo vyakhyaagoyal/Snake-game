@@ -6,7 +6,9 @@ const moveSound=new Audio("move.mp3");
 const musicSound=new Audio("music.mp3");
 let score=0;
 
-let speed=2;
+const board = document.getElementById("board");
+
+let speed=9;
 let lastPaintTime=0;        //initially
 let snakeArr=[
     {x:10,y:10}     //object(head of snake/starting point)
@@ -24,8 +26,17 @@ function main(ctime){
     gameEngine();
 }
 
-function collide(sarr){
-    return false;
+function collide(snakebody){
+    //snake collides with itself
+    for(let i=1;i<snakeArr.length;i++){
+        if(snakebody[i].x===snakebody[0].x && snakebody[i].y===snakebody[0].y){
+            return true;
+        }
+    }  
+        //if snake bumps into wall
+        if(snakebody[0].x>=20 || snakebody[0].x<=0 || snakebody[0].y>=20 || snakebody[0].y<=0){
+            return true;
+        }
 }
 
 function gameEngine(){
@@ -34,7 +45,7 @@ function gameEngine(){
         gameOverSound.play();
         musicSound.pause();
         inputDir={x:0,y:0};
-        alert("Game over! Press any key to start again");
+        alert("Game over! You lost haha. Press any key to start again");
         snakeArr=[{x:10,y:10}];
         musicSound.play();
         score=0;
@@ -43,14 +54,24 @@ function gameEngine(){
     //if food is eaten then increment score and regenerate food
     if(snakeArr[0].y===food.y && snakeArr[0].x===food.x){
         foodSound.play();
+        score+=1;
+
+        if(score>highScoreVal){
+            highScoreVal=score;
+            localStorage.setItem("highScore", JSON.stringify(highScoreVal));
+            highScoreBox.innerHTML="HighScore: "+highScoreVal;
+        }
+
+        scoreBox.innerHTML="Score: "+score;
         snakeArr.unshift({x:snakeArr[0].x+inputDir.x, y:snakeArr[0].y+ inputDir.y}) //adds new segment in starting of array when the snake eats food
         let a=1;
         let b=20;
-        food={x:Math.round(a+(b-a)*Math.random())}  //generate food at random grid points
-    }
+        food={x:Math.round(a+(b-a)*Math.random()),
+        y:Math.round(a+(b-a)*Math.random())}; //food will be generated at random grid points
+        }  //generate food at random grid points
 
     //moving the snake
-    for (let i = snakeArr.length-2; i <=0; i--) {
+    for (let i = snakeArr.length-2; i >=0; i--) {
         snakeArr[i+1]={...snakeArr[i]}; //snakeArr[i]'s new object is formed
         
     }
@@ -72,7 +93,7 @@ function gameEngine(){
         }
 
         board.appendChild(snakeElement);
-    })
+    });
 
     //part 3: display food
     foodElement=document.createElement("div");
@@ -80,14 +101,22 @@ function gameEngine(){
     foodElement.style.gridColumnStart=food.x;
     foodElement.classList.add("food");
     board.appendChild(foodElement);
-
 }
 
 
 
 
-
 // main function logic
+let highScore=localStorage.getItem("highScore");
+if(highScore===null){
+    highScoreVal=0;
+    localStorage.setItem("highScore", JSON.stringify(highScoreVal));
+}
+else{
+    highScoreVal=JSON.parse(highScore);
+    highScoreBox.innerHTML="HighScore: "+highScore;
+}
+
 window.requestAnimationFrame(main);
 window.addEventListener("keydown",e=>{
     inputDir={x:0,y:1}  //start game by moving head downwards
