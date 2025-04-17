@@ -4,6 +4,10 @@ const foodSound=new Audio("food.mp3");
 const gameOverSound=new Audio("gameover.mp3");
 const moveSound=new Audio("move.mp3");
 const musicSound=new Audio("music.mp3");
+// const foodSound = document.getElementById('foodSound');
+// const gameOverSound = document.getElementById('gameOverSound');
+// const moveSound = document.getElementById('moveSound');
+// const musicSound = document.getElementById('musicSound');
 let score=0;
 
 const board = document.getElementById("board");
@@ -46,6 +50,7 @@ function gameEngine(){
         musicSound.pause();
         inputDir={x:0,y:0};
         alert("Game over! You lost haha. Press any key to start again");
+        //Context.fillText("Game over! You lost haha. Press any key to start again", width/2, height/2);
         snakeArr=[{x:10,y:10}];
         musicSound.play();
         score=0;
