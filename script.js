@@ -1,9 +1,9 @@
 //game variables and constants
 let inputDir={x:0,y:0};
-const foodSound=new Audio("food.mp3");
-const gameOverSound=new Audio("gameover.mp3");
-const moveSound=new Audio("move.mp3");
-const musicSound=new Audio("music.mp3");
+// const foodSound=new Audio("food.mp3");
+// const gameOverSound=new Audio("gameover.mp3");
+// const moveSound=new Audio("move.mp3");
+// const musicSound=new Audio("music.mp3");
 
 // const foodSound = document.getElementById('foodSound');
 // const gameOverSound = document.getElementById('gameOverSound');
@@ -47,19 +47,19 @@ function collide(snakebody){
 function gameEngine(){
     //part 1: updating snake array and food- giving it locations and all
     if(collide(snakeArr)){
-        gameOverSound.play();
-        musicSound.pause();
+        //gameOverSound.play();
+        //musicSound.pause();
         inputDir={x:0,y:0};
         alert("Game over! You lost haha. Press any key to start the game again");
         //Context.fillText("Game over! You lost haha. Press any key to start again", width/2, height/2);
         snakeArr=[{x:10,y:10}];
-        musicSound.play();
+        //musicSound.play();
         score=0;
     }
 
     //if food is eaten then increment score and regenerate food
     if(snakeArr[0].y===food.y && snakeArr[0].x===food.x){
-        foodSound.play();
+        //foodSound.play();
         score+=1;
 
         if(score>highScoreVal){
@@ -125,7 +125,7 @@ else{
 window.requestAnimationFrame(main); //takes main function as parameter
 window.addEventListener("keydown",e=>{
     inputDir={x:0,y:1}  //start game by moving head downwards
-    moveSound.play();
+    //moveSound.play();
 
     switch (e.key) {
         case "ArrowUp":
