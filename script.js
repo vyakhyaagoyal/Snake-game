@@ -28,7 +28,7 @@ function main(ctime){
         return;         //divide by 1000 because it is in miliseconds
     }
     lastPaintTime=ctime;
-    gameEngine();
+    gameEngine();   //call the function
 }
 
 function collide(snakebody){
