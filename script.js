@@ -110,7 +110,6 @@ function gameEngine(){
 
 
 
-
 // main function logic
 let highScore=localStorage.getItem("highScore");    //value stored in local storage
 if(highScore===null){
