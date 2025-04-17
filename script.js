@@ -47,7 +47,7 @@ function gameEngine(){
     //part 1: updating snake array and food- giving it locations and all
     if(collide(snakeArr)){
         gameOverSound.play();
-        musicSound.pause();
+        //musicSound.pause();
         inputDir={x:0,y:0};
         alert("Game over! You lost haha. Press any key to start again");
         //Context.fillText("Game over! You lost haha. Press any key to start again", width/2, height/2);
