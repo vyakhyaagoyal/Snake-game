@@ -130,7 +130,7 @@ window.addEventListener("keydown",e=>{
     switch (e.key) {
         case "ArrowUp":
             console.log("ArrowUp");
-            inputDir.x=0;
+            inputDir.x=0;   //specify coordinates
             inputDir.y=-1;
             break;
 
