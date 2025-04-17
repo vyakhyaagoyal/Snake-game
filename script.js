@@ -49,7 +49,7 @@ function gameEngine(){
         gameOverSound.play();
         musicSound.pause();
         inputDir={x:0,y:0};
-        alert("Game over! You lost haha. Press any key to start again");
+        alert("Game over! You lost haha. Press any key to start the game again");
         //Context.fillText("Game over! You lost haha. Press any key to start again", width/2, height/2);
         snakeArr=[{x:10,y:10}];
         musicSound.play();
