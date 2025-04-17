@@ -121,7 +121,7 @@ else{
     highScoreBox.innerHTML="HighScore: "+highScore;
 }
 
-window.requestAnimationFrame(main);
+window.requestAnimationFrame(main); //takes main function as parameter
 window.addEventListener("keydown",e=>{
     inputDir={x:0,y:1}  //start game by moving head downwards
     moveSound.play();
