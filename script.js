@@ -12,7 +12,7 @@ let score=0;
 
 const board = document.getElementById("board");
 
-let speed=9;
+let speed=10;
 let lastPaintTime=0;        //initially
 let snakeArr=[
     {x:10,y:10}     //object(head of snake/starting point)

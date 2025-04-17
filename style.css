@@ -27,7 +27,7 @@
 
 #scoreBox{
     position: absolute;
-    font-size: 50px;
+    font-size: 30px;
     top: 20px;
     left: 40px;
     font-weight: bold;
@@ -40,7 +40,7 @@
 
 #highScoreBox{
     position: absolute;
-    font-size: 50px;
+    font-size: 30px;
     top: 70px;
     left: 40px;
     font-weight: bold;
