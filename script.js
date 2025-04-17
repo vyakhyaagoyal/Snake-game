@@ -37,7 +37,7 @@ function collide(snakebody){
         if(snakebody[i].x===snakebody[0].x && snakebody[i].y===snakebody[0].y){
             return true;
         }
-    }  
+    }   
         //if snake bumps into wall
         if(snakebody[0].x>=20 || snakebody[0].x<=0 || snakebody[0].y>=20 || snakebody[0].y<=0){
             return true;
