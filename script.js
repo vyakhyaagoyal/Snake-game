@@ -52,7 +52,7 @@ function gameEngine(){
         inputDir={x:0,y:0};
 
         const gameOverMessage=document.getElementById("gameOverMessage");
-        gameOverMessage.innerText="Game over! You lost haha. Press any key to start again";
+        gameOverMessage.innerText="Game over!";
         gameOverMessage.style.display="block";
         //alert("Game over! You lost haha. Press any key to start the game again");
         //Context.fillText("Game over! You lost haha. Press any key to start again", width/2, height/2);
