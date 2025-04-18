@@ -69,3 +69,18 @@
     border: .25vmin solid black;
     border-radius: 6px;
 }
+
+#gameOverMessage{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%,-50%);
+    font-family: "Maven Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    color: black;
+    z-index: 10;
+    display: none;
+    padding: 20px 40px;
+
+}
