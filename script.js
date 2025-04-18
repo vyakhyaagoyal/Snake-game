@@ -50,11 +50,17 @@ function gameEngine(){
         //gameOverSound.play();
         //musicSound.pause();
         inputDir={x:0,y:0};
-        alert("Game over! You lost haha. Press any key to start the game again");
+
+        const gameOverMessage=document.getElementById("gameOverMessage");
+        gameOverMessage.innerText="Game over! You lost haha. Press any key to start again";
+        gameOverMessage.style.display="block";
+        //alert("Game over! You lost haha. Press any key to start the game again");
         //Context.fillText("Game over! You lost haha. Press any key to start again", width/2, height/2);
+
         snakeArr=[{x:10,y:10}];
         //musicSound.play();
         score=0;
+        return;
     }
 
     //if food is eaten then increment score and regenerate food
@@ -124,6 +130,8 @@ else{
 
 window.requestAnimationFrame(main); //takes main function as parameter
 window.addEventListener("keydown",e=>{
+    const gameOverMessage=document.getElementById("gameOverMessage");
+    gameOverMessage.style.display="none";
     inputDir={x:0,y:1}  //start game by moving head downwards
     //moveSound.play();
 
